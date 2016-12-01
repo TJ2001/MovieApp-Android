@@ -16,17 +16,19 @@ public class Movie {
     private ArrayList<String> mGenreID;
     private String mTitle;
     private String mVoteAverage;
+    private String mMovieID;
 
 
     public Movie() {}
 
-    public Movie(String mPoster_path, String mOverview, String mReleaseDate, ArrayList<String> mGenreID, String mTitle, String mVoteAverage) {
+    public Movie(String mPoster_path, String mOverview, String mReleaseDate, ArrayList<String> mGenreID, String mTitle, String mVoteAverage, String mMovieID) {
         this.mPoster_path = mPoster_path;
         this.mOverview = mOverview;
         this.mReleaseDate = mReleaseDate;
         this.mGenreID = mGenreID;
         this.mTitle = mTitle;
         this.mVoteAverage = mVoteAverage;
+        this.mMovieID = mMovieID;
     }
 
 
@@ -53,4 +55,6 @@ public class Movie {
     public String getVoteAverage() {
         return mVoteAverage;
     }
+
+    public String getMovieID() {return mMovieID;}
 }

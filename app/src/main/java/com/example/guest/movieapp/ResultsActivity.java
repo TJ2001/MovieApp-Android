@@ -3,9 +3,10 @@ package com.example.guest.movieapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.guest.movieapp.services.TMDB_Services;
 
 import java.io.IOException;
 import java.util.ArrayList;

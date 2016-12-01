@@ -1,6 +1,9 @@
-package com.example.guest.movieapp;
+package com.example.guest.movieapp.services;
 
 import android.util.Log;
+
+import com.example.guest.movieapp.Constants;
+import com.example.guest.movieapp.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,13 +56,14 @@ public class TMDB_Services {
                 String Overview = resultsJSON.getString("overview");
                 String releaseDate = resultsJSON.getString("release_date");
                 String voteAverage = resultsJSON.getString("vote_average");
+                String movieId = resultsJSON.getString("id");
                 ArrayList<String> genreId = new ArrayList<>();
                 JSONArray genreList = resultsJSON.getJSONArray("genre_ids");
 
                 for (int j = 0; j < genreList.length(); j++) {
                     genreId.add(genreList.getString(j));
                 }
-                Movie newMovie = new Movie(Poster_path, Overview, releaseDate, genreId, Title, voteAverage);
+                Movie newMovie = new Movie(Poster_path, Overview, releaseDate, genreId, Title, voteAverage, movieId);
                 movies.add(newMovie);
                 Log.v(TAG, "new movies: " + newMovie.getTitle());
             }
