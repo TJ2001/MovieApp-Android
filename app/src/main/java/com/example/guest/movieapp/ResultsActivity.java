@@ -1,7 +1,6 @@
 package com.example.guest.movieapp;
 
 import android.content.Intent;
-import android.graphics.Movie;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
@@ -18,6 +17,7 @@ import okhttp3.Response;
 public class ResultsActivity extends AppCompatActivity {
     @Bind(R.id.listView) ListView mListView;
     ArrayList<Movie> mMovies = new ArrayList<>();
+    public static final String TAG = ResultsActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class ResultsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                mMovies = MovieFINDER.processResults(response);
+                mMovies = MovieFINDER.processResults(response.body().string());
 
             }
         });
