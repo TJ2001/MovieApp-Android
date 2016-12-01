@@ -3,7 +3,7 @@ package com.example.guest.movieapp.services;
 import android.util.Log;
 
 import com.example.guest.movieapp.Constants;
-import com.example.guest.movieapp.Movie;
+import com.example.guest.movieapp.models.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -1,4 +1,4 @@
-package com.example.guest.movieapp;
+package com.example.guest.movieapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.guest.movieapp.models.Movie;
+import com.example.guest.movieapp.R;
 import com.example.guest.movieapp.services.TMDB_Services;
 
 import java.io.IOException;
@@ -17,10 +19,10 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class ResultsActivity extends AppCompatActivity {
+public class ResultsListActivity extends AppCompatActivity {
     @Bind(R.id.listView) ListView mListView;
     ArrayList<Movie> mMovies = new ArrayList<>();
-    public static final String TAG = ResultsActivity.class.getSimpleName();
+    public static final String TAG = ResultsListActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class ResultsActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 mMovies = MovieFINDER.processResults(response.body().string());
 
-                ResultsActivity.this.runOnUiThread(new Runnable(){
+                ResultsListActivity.this.runOnUiThread(new Runnable(){
                     @Override
                     public void run(){
                         String[] movieTitles = new String[mMovies.size()];
@@ -55,7 +57,7 @@ public class ResultsActivity extends AppCompatActivity {
                             movieTitles[i] = mMovies.get(i).getTitle();
                         }
 
-                        ArrayAdapter adapter = new ArrayAdapter(ResultsActivity.this,
+                        ArrayAdapter adapter = new ArrayAdapter(ResultsListActivity.this,
                                 android.R.layout.simple_list_item_1, movieTitles);
                         mListView.setAdapter(adapter);
                     }
