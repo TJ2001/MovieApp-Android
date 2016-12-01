@@ -3,6 +3,8 @@ package com.example.guest.movieapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.io.IOException;
@@ -43,6 +45,22 @@ public class ResultsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 mMovies = MovieFINDER.processResults(response.body().string());
+
+                ResultsActivity.this.runOnUiThread(new Runnable(){
+                    @Override
+                    public void run(){
+                        String[] movieTitles = new String[mMovies.size()];
+                        for (int i = 0; i < movieTitles.length; i ++) {
+                            movieTitles[i] = mMovies.get(i).getTitle();
+                        }
+
+                        ArrayAdapter adapter = new ArrayAdapter(ResultsActivity.this,
+                                android.R.layout.simple_list_item_1, movieTitles);
+                        mListView.setAdapter(adapter);
+                    }
+                });
+
+
 
             }
         });

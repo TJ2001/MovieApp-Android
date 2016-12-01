@@ -57,7 +57,7 @@ public class TMDB_Services {
                 JSONArray genreList = resultsJSON.getJSONArray("genre_ids");
 
                 for (int j = 0; j < genreList.length(); j++) {
-                    genreId.add(genreList.getString(i));
+                    genreId.add(genreList.getString(j));
                 }
                 Movie newMovie = new Movie(Poster_path, Overview, releaseDate, genreId, Title, voteAverage);
                 movies.add(newMovie);
