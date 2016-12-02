@@ -84,8 +84,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save Movie"
-                android:id="@+id/saveMovieButton"
+                android:text="Share Movie"
+                android:id="@+id/sendContactButton"
                 android:layout_alignParentBottom="true"
                 android:background="@color/colorAccent"
                 android:textSize="15sp" />

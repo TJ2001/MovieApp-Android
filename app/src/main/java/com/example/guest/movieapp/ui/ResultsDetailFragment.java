@@ -34,7 +34,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class ResultsDetailFragment extends Fragment {
+public class ResultsDetailFragment extends Fragment implements View.OnClickListener {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 150;
 
@@ -44,7 +44,7 @@ public class ResultsDetailFragment extends Fragment {
     @Bind(R.id.genreTextView) TextView mGenre;
     @Bind(R.id.overViewView) TextView mOverview;
     @Bind(R.id.castView) ListView mCost;
-    @Bind(R.id.saveMovieButton) Button mButton;
+    @Bind(R.id.sendContactButton) Button mButton;
 
     private ArrayList<Cast> mCast;
 
@@ -83,6 +83,7 @@ public class ResultsDetailFragment extends Fragment {
         mGenre.setText(mMovie.getGenreID().toString());
         mRating.setText(mMovie.getVoteAverage() + "/10");
         mOverview.setText(mMovie.getOverview());
+        mButton.setOnClickListener(this);
 
 
         final TMDB_Services MovieFINDER = new TMDB_Services();
@@ -121,5 +122,13 @@ public class ResultsDetailFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onClick(View v){
+        Intent sms=new Intent();
+        sms.setAction(android.content.Intent.ACTION_VIEW);
+        sms.setData(Uri.parse("sms:8056102361"));
+        sms.putExtra("sms_body", "Let's go watch " + mMovie.getTitle());
+        startActivity(sms);
+    }
 
 }
