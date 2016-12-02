@@ -12,4 +12,7 @@ public class Constants {
     public static final String TMDB_TOKEN = BuildConfig.MTDB_TOKEN;
     public static final String API_KEY = "api_key";
     public static final String imageURL = "https://image.tmdb.org/t/p/w300_and_h450_bestv2";
+
+    public static final String API_BASE_URL_CAST = "https://api.themoviedb.org/3/movie/";
+    public static final String cast = "/credits";
 }

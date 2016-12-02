@@ -3,12 +3,17 @@ package com.example.guest.movieapp.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.guest.movieapp.models.Movie;
 import com.example.guest.movieapp.R;
 import com.example.guest.movieapp.services.TMDB_Services;
+
+import org.parceler.Parcels;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -60,6 +65,26 @@ public class ResultsListActivity extends AppCompatActivity {
                         ArrayAdapter adapter = new ArrayAdapter(ResultsListActivity.this,
                                 android.R.layout.simple_list_item_1, movieTitles);
                         mListView.setAdapter(adapter);
+
+                        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int positon, long id) {
+                                Intent intent = new Intent(view.getContext(), ResultsDetailActivity.class);
+                                intent.putExtra("position", positon);
+                                intent.putExtra("movies", Parcels.wrap(mMovies));
+                                view.getContext().startActivity(intent);
+                            }
+                        });
+
+                        for (Movie movie : mMovies) {
+                            Log.d(TAG, "Title: " + movie.getTitle());
+                            Log.d(TAG, "Overview: " + movie.getOverview());
+                            Log.d(TAG, "Release Date: " + movie.getReleaseDate());
+                            Log.d(TAG, "poster url: " + movie.getPoster_path());
+                            Log.d(TAG, "voting average: " + movie.getVoteAverage());
+                            Log.d(TAG, "Movie ID: " + movie.getMovieID());
+                            Log.d(TAG, "Genres: " + movie.getGenreID().toString());
+                        }
                     }
                 });
 

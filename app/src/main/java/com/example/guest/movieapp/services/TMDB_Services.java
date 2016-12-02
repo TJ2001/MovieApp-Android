@@ -3,6 +3,7 @@ package com.example.guest.movieapp.services;
 import android.util.Log;
 
 import com.example.guest.movieapp.Constants;
+import com.example.guest.movieapp.models.Cast;
 import com.example.guest.movieapp.models.Movie;
 
 import org.json.JSONArray;
@@ -41,6 +42,24 @@ public class TMDB_Services {
         call.enqueue(callback);
     }
 
+    public static void findCast(String id, Callback callback){
+        OkHttpClient client = new OkHttpClient.Builder()
+                .build();
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.API_BASE_URL_CAST + id + Constants.cast).newBuilder();
+        urlBuilder.addQueryParameter(Constants.API_KEY, Constants.TMDB_API_KEY);
+        String url = urlBuilder.build().toString();
+
+        Log.v("cast Service", "url: " + url);
+
+        Request request= new Request.Builder()
+                .url(url)
+                .build();
+
+        Call call = client.newCall(request);
+        call.enqueue(callback);
+    }
+
     public ArrayList<Movie> processResults (String Data) {
         ArrayList<Movie> movies = new ArrayList<>();
 
@@ -65,7 +84,6 @@ public class TMDB_Services {
                 }
                 Movie newMovie = new Movie(Poster_path, Overview, releaseDate, genreId, Title, voteAverage, movieId);
                 movies.add(newMovie);
-                Log.v(TAG, "new movies: " + newMovie.getTitle());
             }
 
         } catch (JSONException e) {
@@ -73,5 +91,30 @@ public class TMDB_Services {
         }
 
         return movies;
+    }
+
+    public ArrayList<Cast> castResults (String Data) {
+        ArrayList<Cast> Casts = new ArrayList<>();
+
+        try {
+            JSONObject castJSON = new JSONObject(Data);
+
+            JSONArray casts = castJSON.getJSONArray("cast");
+
+            for (int i = 0; i < casts.length(); i++) {
+                JSONObject resultsJSON = casts.getJSONObject(i);
+                String id = resultsJSON.getString("id");
+                String name = resultsJSON.getString("name");
+
+                Cast newCast = new Cast(name, id);
+
+                Casts.add(newCast);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return Casts;
     }
 }

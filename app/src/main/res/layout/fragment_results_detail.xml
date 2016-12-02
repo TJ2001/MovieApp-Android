@@ -4,10 +4,125 @@
     android:layout_height="match_parent"
     tools:context="com.example.guest.movieapp.ui.ResultsDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:id="@+id/movieImageView"
+            android:src="@drawable/java"
+            android:scaleType="centerCrop" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Movie Title"
+                android:id="@+id/movieTitleTextView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.5/5"
+                android:id="@+id/ratingTextView"
+                android:layout_alignTop="@+id/movieTitleTextView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Genre"
+                android:id="@+id/genreTextView"
+                android:layout_below="@+id/movieTitleTextView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textStyle="italic" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_above="@+id/saveRestaurantButton"
+                android:paddingLeft="30dp"
+                android:paddingTop="20dp"
+                android:paddingRight="30dp"
+                android:weightSum="1"
+                android:id="@+id/linearLayout">
+
+                <!--put icon images in drawableLeft-->
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save Movie"
+                android:id="@+id/saveMovieButton"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorAccent"
+                android:textSize="15sp" />
+
+            <ListView
+                android:layout_width="180dp"
+                android:layout_height="140dp"
+                android:text="Actors names go here"
+                android:id="@+id/castView"
+                android:drawableLeft="@drawable/ic_swap_vertical_circle_black_24dp"
+                android:drawablePadding="4dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_gravity="right"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_above="@+id/saveMovieButton"
+                android:background="@color/background_material_light"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Plot description here"
+                android:drawableLeft="@drawable/ic_swap_vertical_circle_black_24dp"
+                android:drawablePadding="4dp"
+                android:id="@+id/overViewView"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_above="@+id/saveMovieButton"
+                android:layout_alignTop="@+id/castView" />
+
+        </RelativeLayout>
+    </LinearLayout>
 
 </FrameLayout>

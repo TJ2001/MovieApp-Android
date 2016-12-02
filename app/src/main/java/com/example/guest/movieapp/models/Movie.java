@@ -23,12 +23,14 @@ public class Movie {
 
     public Movie(String mPoster_path, String mOverview, String mReleaseDate, ArrayList<String> mGenreID, String mTitle, String mVoteAverage, String mMovieID) {
         this.mPoster_path = mPoster_path;
+        mPoster_path = getLargeImageUrl(mPoster_path);
         this.mOverview = mOverview;
         this.mReleaseDate = mReleaseDate;
         this.mGenreID = mGenreID;
         this.mTitle = mTitle;
         this.mVoteAverage = mVoteAverage;
         this.mMovieID = mMovieID;
+
     }
 
 
@@ -57,4 +59,9 @@ public class Movie {
     }
 
     public String getMovieID() {return mMovieID;}
+
+    public String getLargeImageUrl(String imageUrl) {
+        String largeImageUrl = imageUrl.substring(0, imageUrl.length() - 6).concat("o.jpg");
+        return largeImageUrl;
+    }
 }
